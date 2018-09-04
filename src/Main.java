@@ -4,7 +4,9 @@ import createPattern.AbstractFactoryPattern.factoryProducer.FactoryProducer;
 import createPattern.builderPattern.builder.MealBuilder;
 import createPattern.builderPattern.meal.Meal;
 import createPattern.factoryPattern.factory.ShapeFactory;
-import createPattern.factoryPattern.shapeInterface.Shape;
+
+import createPattern.prototypePattern.cloneClass.Shape;
+import createPattern.prototypePattern.dao.ShapeCache;
 import createPattern.singletonPattern.demo.SingleObject;
 
 public class Main {
@@ -72,7 +74,7 @@ public class Main {
         /**
          * 4. 构造者模式演示
          * */
-        MealBuilder mealBuilder = new MealBuilder();
+        /*MealBuilder mealBuilder = new MealBuilder();
         //素菜Meal
         Meal vegMeal  = mealBuilder.prepareVegMeal();
         System.out.println("Veg Meal: ");
@@ -82,7 +84,20 @@ public class Main {
         Meal nonVegMean = mealBuilder.prepareNonVegMeal();
         System.out.println("Non Veg Meal: ");
         nonVegMean.showItems();
-        System.out.println("Total cost: "+nonVegMean.getCost());
+        System.out.println("Total cost: "+nonVegMean.getCost());*/
 
+        /**
+         * 5. 原型模式演示
+         * */
+        ShapeCache.loadCache();
+
+        Shape clonedShape = (Shape) ShapeCache.getShape("1");
+        System.out.println("Shape: " + clonedShape.getType());
+
+        Shape clonedShape2 = ShapeCache.getShape("2");
+        System.out.println("Shape: " + clonedShape2.getType());
+
+        Shape clonedShape3 = ShapeCache.getShape("3");
+        System.out.println("Shape: " + clonedShape3.getType());
     }
 }
