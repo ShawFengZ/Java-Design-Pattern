@@ -1,8 +1,11 @@
 import createPattern.AbstractFactoryPattern.abstractFactory.AbstractFactory;
 import createPattern.AbstractFactoryPattern.colorInterface.Color;
 import createPattern.AbstractFactoryPattern.factoryProducer.FactoryProducer;
+import createPattern.builderPattern.builder.MealBuilder;
+import createPattern.builderPattern.meal.Meal;
 import createPattern.factoryPattern.factory.ShapeFactory;
 import createPattern.factoryPattern.shapeInterface.Shape;
+import createPattern.singletonPattern.demo.SingleObject;
 
 public class Main {
 
@@ -26,7 +29,7 @@ public class Main {
          * 2. 使用FactoryProducer来获取AbstractFactory，通过传递消息来获取实体类的对象
          * */
         //获取形状工厂
-        AbstractFactory shapeFactory = FactoryProducer.getFactory("SHAPE");
+        /*AbstractFactory shapeFactory = FactoryProducer.getFactory("SHAPE");
         //获取形状为Circle的对象
         Shape shape1 = shapeFactory.getShape("CIRCLE");
         //调用circle的draw方法
@@ -53,6 +56,33 @@ public class Main {
         //获取颜色Green的对象
         Color color3 = colorFactory.getColor("GREEN");
         //调用Green的fill方法
-        color3.fill();
+        color3.fill();*/
+
+        /**
+         * 3. 通过singleton创建唯一的对象
+         * */
+        //报错，因为SingleObect()构建函数是不可见的
+        //SingleObject object = new SingleObject();
+
+        /*SingleObject object = SingleObject.getInstance();
+
+        //显示消息
+        object.showMessage();*/
+
+        /**
+         * 4. 构造者模式演示
+         * */
+        MealBuilder mealBuilder = new MealBuilder();
+        //素菜Meal
+        Meal vegMeal  = mealBuilder.prepareVegMeal();
+        System.out.println("Veg Meal: ");
+        vegMeal.showItems();
+        System.out.println("Total Cost: "+vegMeal.getCost());
+        //荤菜Meal
+        Meal nonVegMean = mealBuilder.prepareNonVegMeal();
+        System.out.println("Non Veg Meal: ");
+        nonVegMean.showItems();
+        System.out.println("Total cost: "+nonVegMean.getCost());
+
     }
 }
