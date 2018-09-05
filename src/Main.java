@@ -8,6 +8,7 @@ import createPattern.factoryPattern.factory.ShapeFactory;
 import createPattern.prototypePattern.cloneClass.Shape;
 import createPattern.prototypePattern.dao.ShapeCache;
 import createPattern.singletonPattern.demo.SingleObject;
+import structurePattern.adapterPattern.player.impl.AudioPlayer;
 
 public class Main {
 
@@ -89,7 +90,7 @@ public class Main {
         /**
          * 5. 原型模式演示
          * */
-        ShapeCache.loadCache();
+        /*ShapeCache.loadCache();
 
         Shape clonedShape = (Shape) ShapeCache.getShape("1");
         System.out.println("Shape: " + clonedShape.getType());
@@ -98,6 +99,15 @@ public class Main {
         System.out.println("Shape: " + clonedShape2.getType());
 
         Shape clonedShape3 = ShapeCache.getShape("3");
-        System.out.println("Shape: " + clonedShape3.getType());
+        System.out.println("Shape: " + clonedShape3.getType());*/
+
+        /**
+         * 6. 适配器模式演示
+         *  用MediaAdapter将AudioPlayer和AdvancedMediaPlayer适配起来，可以通过MediaPlayer使用AdvancedMediaPlayer
+         * */
+        AudioPlayer audioPlayer = new AudioPlayer();
+
+        audioPlayer.play("mp3", "beyond the horizon.mp3");
+        audioPlayer.play("mp4", "alone.mp4");
     }
 }
