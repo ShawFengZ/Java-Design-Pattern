@@ -5,10 +5,14 @@ import createPattern.builderPattern.builder.MealBuilder;
 import createPattern.builderPattern.meal.Meal;
 import createPattern.factoryPattern.factory.ShapeFactory;
 
-import createPattern.prototypePattern.cloneClass.Shape;
+//import createPattern.prototypePattern.cloneClass.Shape;
 import createPattern.prototypePattern.dao.ShapeCache;
 import createPattern.singletonPattern.demo.SingleObject;
 import structurePattern.adapterPattern.player.impl.AudioPlayer;
+import structurePattern.bridgePattern.bridge.impl.GreenCircle;
+import structurePattern.bridgePattern.bridge.impl.RedCircle;
+import structurePattern.bridgePattern.shape.Shape;
+import structurePattern.bridgePattern.shape.impl.Circle;
 
 public class Main {
 
@@ -105,9 +109,18 @@ public class Main {
          * 6. 适配器模式演示
          *  用MediaAdapter将AudioPlayer和AdvancedMediaPlayer适配起来，可以通过MediaPlayer使用AdvancedMediaPlayer
          * */
-        AudioPlayer audioPlayer = new AudioPlayer();
+        /*AudioPlayer audioPlayer = new AudioPlayer();
 
         audioPlayer.play("mp3", "beyond the horizon.mp3");
-        audioPlayer.play("mp4", "alone.mp4");
+        audioPlayer.play("mp4", "alone.mp4");*/
+
+        /**
+         * 7. 桥接器模式的演示
+         * */
+        Shape redCircle = new Circle(100, 100, 10, new RedCircle());
+        Shape greenCircle = new Circle(100,100,10, new GreenCircle());
+
+        redCircle.draw();
+        greenCircle.draw();
     }
 }
