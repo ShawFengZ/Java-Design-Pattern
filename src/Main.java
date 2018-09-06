@@ -8,6 +8,7 @@ import createPattern.factoryPattern.factory.ShapeFactory;
 //import createPattern.prototypePattern.cloneClass.Shape;
 import createPattern.prototypePattern.dao.ShapeCache;
 import createPattern.singletonPattern.demo.SingleObject;
+import structurePattern.FacadePattern.facade.ShapeMaker;
 import structurePattern.adapterPattern.player.impl.AudioPlayer;
 import structurePattern.bridgePattern.bridge.impl.GreenCircle;
 import structurePattern.bridgePattern.bridge.impl.RedCircle;
@@ -164,7 +165,7 @@ public class Main {
          * 10. 装饰器模式演示
          * */
         //步骤5. 使用RedShapeDecorator来装饰Shape对象
-        Shape circle = new structurePattern.decoratorPattern.entity.impl.Circle();
+        /*Shape circle = new structurePattern.decoratorPattern.entity.impl.Circle();
         Shape redCircle = new RedShapeDecorator(new structurePattern.decoratorPattern.entity.impl.Circle());
         Shape redRectangle = new RedShapeDecorator(new Rectangle());
         System.out.println("Circle with normal border");
@@ -174,6 +175,15 @@ public class Main {
         redCircle.draw();
 
         System.out.println("\nRectangle of red border");
-        redRectangle.draw();
+        redRectangle.draw();*/
+
+        /**
+         * 11. 外观模式的演示
+         *      利用外观类去操作Shape
+         * */
+        ShapeMaker shapeMaker = new ShapeMaker();
+        shapeMaker.drawCircle();
+        shapeMaker.drawRectangle();
+        shapeMaker.drawSquare();
     }
 }
