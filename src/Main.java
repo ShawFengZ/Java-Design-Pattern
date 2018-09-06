@@ -11,8 +11,12 @@ import createPattern.singletonPattern.demo.SingleObject;
 import structurePattern.adapterPattern.player.impl.AudioPlayer;
 import structurePattern.bridgePattern.bridge.impl.GreenCircle;
 import structurePattern.bridgePattern.bridge.impl.RedCircle;
-import structurePattern.bridgePattern.shape.Shape;
+//import structurePattern.bridgePattern.shape.Shape;
 import structurePattern.bridgePattern.shape.impl.Circle;
+import structurePattern.compositePattern.entity.Employee;
+import structurePattern.decoratorPattern.decorator.RedShapeDecorator;
+import structurePattern.decoratorPattern.entity.Shape;
+import structurePattern.decoratorPattern.entity.impl.Rectangle;
 
 public class Main {
 
@@ -117,10 +121,59 @@ public class Main {
         /**
          * 7. 桥接器模式的演示
          * */
-        Shape redCircle = new Circle(100, 100, 10, new RedCircle());
+        /*Shape redCircle = new Circle(100, 100, 10, new RedCircle());
         Shape greenCircle = new Circle(100,100,10, new GreenCircle());
 
         redCircle.draw();
-        greenCircle.draw();
+        greenCircle.draw();*/
+
+        /**
+         * 9. 组合模式演示
+         * */
+        //步骤2：使用 Employee 类来创建和打印员工的层次结构。
+        /*Employee CEO = new Employee("John", "CEO", 30000);
+        Employee headSales = new Employee("Robert", "Head Sales", 20000);
+        Employee headMarketing = new Employee("Michel", "Head Marketing", 20000);
+
+        Employee clerk1 = new Employee("Laura", "Marketing", 10000);
+        Employee clerk2 = new Employee("Bob", "Marketing", 10000);
+
+        Employee salesExecutive1 = new Employee("Richard", "Sales", 10000);
+        Employee salesExecutive2 = new Employee("Bob", "Sales", 10000);
+
+        //建立组合树状结构
+        CEO.add(headSales);
+        CEO.add(headMarketing);
+
+        headSales.add(salesExecutive1);
+        headSales.add(salesExecutive2);
+
+        headMarketing.add(clerk1);
+        headMarketing.add(clerk2);
+
+        //打印所有员工
+        System.out.println(CEO);
+        for (Employee headEmployee: CEO.getSubordinates()){
+            System.out.println(headEmployee);
+            for (Employee employee: headEmployee.getSubordinates()){
+                System.out.println(employee);
+            }
+        }*/
+
+        /**
+         * 10. 装饰器模式演示
+         * */
+        //步骤5. 使用RedShapeDecorator来装饰Shape对象
+        Shape circle = new structurePattern.decoratorPattern.entity.impl.Circle();
+        Shape redCircle = new RedShapeDecorator(new structurePattern.decoratorPattern.entity.impl.Circle());
+        Shape redRectangle = new RedShapeDecorator(new Rectangle());
+        System.out.println("Circle with normal border");
+        circle.draw();
+
+        System.out.println("\nCircle of red border");
+        redCircle.draw();
+
+        System.out.println("\nRectangle of red border");
+        redRectangle.draw();
     }
 }
