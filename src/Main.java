@@ -20,6 +20,8 @@ import structurePattern.decoratorPattern.entity.Shape;
 import structurePattern.decoratorPattern.entity.impl.Rectangle;
 import structurePattern.flyweightPattern.entity.impl.Circle;
 import structurePattern.flyweightPattern.factory.ShapeFactory;
+import structurePattern.proxyPattern.entity.Image;
+import structurePattern.proxyPattern.entity.impl.ProxyImage;
 
 public class Main {
 
@@ -209,13 +211,25 @@ public class Main {
          *      使用传递过来的颜色来获取实体对象，HashMap中有的话就直接获取
          *      没有就自己创建了压入这个HashMap中，避免了对象的重复创建
          * */
-        for (int i = 0; i < 20; ++i){
+        /*for (int i = 0; i < 20; ++i){
             Circle circle = (Circle) ShapeFactory.getCircle(getRandomColor());
             circle.setX(getRandomX());
             circle.setY(getRandomY());
             circle.setRadius(100);
             circle.draw();
-        }
+        }*/
+
+        /**
+         *  13. 代理模式演示
+         *     代理类和被代理类同时实现同一个接口
+         *     代理类中有被代理类的对象，实现两者之间的联系关系
+         * */
+        Image image = new ProxyImage("test_10mb.jpg");
+        //图像从磁盘加载
+        image.display();
+        System.out.println();
+        //图像不需要从磁盘加载
+        image.display();
     }
 
 }
