@@ -3,7 +3,7 @@ import createPattern.AbstractFactoryPattern.colorInterface.Color;
 import createPattern.AbstractFactoryPattern.factoryProducer.FactoryProducer;
 import createPattern.builderPattern.builder.MealBuilder;
 import createPattern.builderPattern.meal.Meal;
-import createPattern.factoryPattern.factory.ShapeFactory;
+//import createPattern.factoryPattern.factory.ShapeFactory;
 
 //import createPattern.prototypePattern.cloneClass.Shape;
 import createPattern.prototypePattern.dao.ShapeCache;
@@ -13,13 +13,31 @@ import structurePattern.adapterPattern.player.impl.AudioPlayer;
 import structurePattern.bridgePattern.bridge.impl.GreenCircle;
 import structurePattern.bridgePattern.bridge.impl.RedCircle;
 //import structurePattern.bridgePattern.shape.Shape;
-import structurePattern.bridgePattern.shape.impl.Circle;
+//import structurePattern.bridgePattern.shape.impl.Circle;
 import structurePattern.compositePattern.entity.Employee;
 import structurePattern.decoratorPattern.decorator.RedShapeDecorator;
 import structurePattern.decoratorPattern.entity.Shape;
 import structurePattern.decoratorPattern.entity.impl.Rectangle;
+import structurePattern.flyweightPattern.entity.impl.Circle;
+import structurePattern.flyweightPattern.factory.ShapeFactory;
 
 public class Main {
+
+    private static final String colors[] = {
+      "Red", "Green", "Blue", "White", "Black"
+    };
+
+    private static String getRandomColor(){
+        return colors[(int)Math.random() * colors.length];
+    }
+
+    private static int getRandomX(){
+        return (int)(Math.random() * 100);
+    }
+
+    private static int getRandomY(){
+        return (int)(Math.random() * 100);
+    }
 
     public static void main(String[] args) {
         /**
@@ -181,9 +199,23 @@ public class Main {
          * 11. 外观模式的演示
          *      利用外观类去操作Shape
          * */
-        ShapeMaker shapeMaker = new ShapeMaker();
+        /*ShapeMaker shapeMaker = new ShapeMaker();
         shapeMaker.drawCircle();
         shapeMaker.drawRectangle();
-        shapeMaker.drawSquare();
+        shapeMaker.drawSquare();*/
+
+        /**
+         * 12. 享元模式演示
+         *      使用传递过来的颜色来获取实体对象，HashMap中有的话就直接获取
+         *      没有就自己创建了压入这个HashMap中，避免了对象的重复创建
+         * */
+        for (int i = 0; i < 20; ++i){
+            Circle circle = (Circle) ShapeFactory.getCircle(getRandomColor());
+            circle.setX(getRandomX());
+            circle.setY(getRandomY());
+            circle.setRadius(100);
+            circle.draw();
+        }
     }
+
 }
