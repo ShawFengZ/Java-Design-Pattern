@@ -1,3 +1,5 @@
+import behaviorPattern.chainOfResponsibilityPattern.AbstractLogger;
+import behaviorPattern.chainOfResponsibilityPattern.ErrorLogger;
 import createPattern.AbstractFactoryPattern.abstractFactory.AbstractFactory;
 import createPattern.AbstractFactoryPattern.colorInterface.Color;
 import createPattern.AbstractFactoryPattern.factoryProducer.FactoryProducer;
@@ -39,6 +41,21 @@ public class Main {
 
     private static int getRandomY(){
         return (int)(Math.random() * 100);
+    }
+
+    /**
+     *  14. 责任链模式的工具方法
+     * */
+    public static AbstractLogger getChainOfLoggers(){
+        AbstractLogger errorLogger = new ErrorLogger(AbstractLogger.ERROR);
+        AbstractLogger fileLogger = new ErrorLogger(AbstractLogger.DEBUG);
+        AbstractLogger consoleLogger = new ErrorLogger(AbstractLogger.INFO);
+
+        //创建责任链
+        errorLogger.setNextLogger(fileLogger);
+        fileLogger.setNextLogger(consoleLogger);
+
+        return errorLogger;
     }
 
     public static void main(String[] args) {
@@ -224,12 +241,24 @@ public class Main {
          *     代理类和被代理类同时实现同一个接口
          *     代理类中有被代理类的对象，实现两者之间的联系关系
          * */
-        Image image = new ProxyImage("test_10mb.jpg");
+        /*Image image = new ProxyImage("test_10mb.jpg");
         //图像从磁盘加载
         image.display();
         System.out.println();
         //图像不需要从磁盘加载
-        image.display();
+        image.display();*/
+
+        /* ================================== 行为型模式 =================================== */
+
+        /**
+         *  14. 责任链模式演示
+         * */
+        AbstractLogger loggerChain = getChainOfLoggers();
+        loggerChain.logMessage(AbstractLogger.INFO, "This is an information.");
+
+        loggerChain.logMessage(AbstractLogger.INFO, "This is a debug information.");
+
+        loggerChain.logMessage(AbstractLogger.ERROR, "This is an error information.");
     }
 
 }
