@@ -8,6 +8,8 @@ import behaviorPattern.interpreterPattern.expression.Expression;
 import behaviorPattern.interpreterPattern.expression.impl.AndExpression;
 import behaviorPattern.interpreterPattern.expression.impl.OrExpression;
 import behaviorPattern.interpreterPattern.expression.impl.TerminalExpression;
+import behaviorPattern.iteratorPattern.iterator.Iterator;
+import behaviorPattern.iteratorPattern.iterator.impl.NameRepository;
 import createPattern.AbstractFactoryPattern.abstractFactory.AbstractFactory;
 import createPattern.AbstractFactoryPattern.colorInterface.Color;
 import createPattern.AbstractFactoryPattern.factoryProducer.FactoryProducer;
@@ -301,11 +303,20 @@ public class Main {
         /**
          * 16. 解释器模式演示
          * */
-        Expression isMale = getMaleExpression();
+        /*Expression isMale = getMaleExpression();
         Expression isMarriedWoman = getMarriedWomanExpression();
 
         System.out.println("John is male? " + isMale.interpret("John"));
-        System.out.println("Julie is a married woman? " + isMarriedWoman.interpret("Married Julie"));
+        System.out.println("Julie is a married woman? " + isMarriedWoman.interpret("Married Julie"));*/
+
+        /**
+         * 17. 迭代器模式的应用
+         * */
+        NameRepository nameRepository = new NameRepository();
+        for (Iterator iterator = nameRepository.getIterator(); iterator.hasNext();){
+            String name = (String)iterator.next();
+            System.out.println("Name: " + name);
+        }
     }
 
 }
