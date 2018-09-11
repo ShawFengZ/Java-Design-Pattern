@@ -1,5 +1,13 @@
 import behaviorPattern.chainOfResponsibilityPattern.AbstractLogger;
 import behaviorPattern.chainOfResponsibilityPattern.ErrorLogger;
+import behaviorPattern.commandPattern.call.Broker;
+import behaviorPattern.commandPattern.command.impl.BuyStock;
+import behaviorPattern.commandPattern.command.impl.SellStock;
+import behaviorPattern.commandPattern.request.Stock;
+import behaviorPattern.interpreterPattern.expression.Expression;
+import behaviorPattern.interpreterPattern.expression.impl.AndExpression;
+import behaviorPattern.interpreterPattern.expression.impl.OrExpression;
+import behaviorPattern.interpreterPattern.expression.impl.TerminalExpression;
 import createPattern.AbstractFactoryPattern.abstractFactory.AbstractFactory;
 import createPattern.AbstractFactoryPattern.colorInterface.Color;
 import createPattern.AbstractFactoryPattern.factoryProducer.FactoryProducer;
@@ -56,6 +64,23 @@ public class Main {
         fileLogger.setNextLogger(consoleLogger);
 
         return errorLogger;
+    }
+
+    /**
+     *  16. 解释器模式
+     * */
+    //规则：Robert和John都是男性
+    public static Expression getMaleExpression(){
+        Expression robert = new TerminalExpression("Robert");
+        Expression john = new TerminalExpression("John");
+        return new OrExpression(robert, john);
+    }
+
+    //规则：Julie是一个已婚女性
+    public static Expression getMarriedWomanExpression(){
+        Expression julie = new TerminalExpression("Julie");
+        Expression married = new TerminalExpression("Married");
+        return new AndExpression(julie, married);
     }
 
     public static void main(String[] args) {
@@ -253,12 +278,34 @@ public class Main {
         /**
          *  14. 责任链模式演示
          * */
-        AbstractLogger loggerChain = getChainOfLoggers();
+        /*AbstractLogger loggerChain = getChainOfLoggers();
         loggerChain.logMessage(AbstractLogger.INFO, "This is an information.");
 
         loggerChain.logMessage(AbstractLogger.INFO, "This is a debug information.");
 
-        loggerChain.logMessage(AbstractLogger.ERROR, "This is an error information.");
+        loggerChain.logMessage(AbstractLogger.ERROR, "This is an error information.");*/
+
+        /**
+         * 15. 命令模式演示
+         * */
+        /*Stock abcStock = new Stock();
+        BuyStock buyStockOrder = new BuyStock(abcStock);
+        SellStock sellStockOrder = new SellStock(abcStock);
+
+        Broker broker = new Broker();
+        broker.takeOrder(buyStockOrder);
+        broker.takeOrder(sellStockOrder);
+
+        broker.placeOrders();*/
+
+        /**
+         * 16. 解释器模式演示
+         * */
+        Expression isMale = getMaleExpression();
+        Expression isMarriedWoman = getMarriedWomanExpression();
+
+        System.out.println("John is male? " + isMale.interpret("John"));
+        System.out.println("Julie is a married woman? " + isMarriedWoman.interpret("Married Julie"));
     }
 
 }
