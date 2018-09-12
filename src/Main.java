@@ -10,6 +10,10 @@ import behaviorPattern.interpreterPattern.expression.impl.OrExpression;
 import behaviorPattern.interpreterPattern.expression.impl.TerminalExpression;
 import behaviorPattern.iteratorPattern.iterator.Iterator;
 import behaviorPattern.iteratorPattern.iterator.impl.NameRepository;
+import behaviorPattern.mediatorPattern.user.User;
+import behaviorPattern.mementoPattern.CareTaker;
+import behaviorPattern.mementoPattern.Originator;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import createPattern.AbstractFactoryPattern.abstractFactory.AbstractFactory;
 import createPattern.AbstractFactoryPattern.colorInterface.Color;
 import createPattern.AbstractFactoryPattern.factoryProducer.FactoryProducer;
@@ -312,11 +316,38 @@ public class Main {
         /**
          * 17. 迭代器模式的应用
          * */
-        NameRepository nameRepository = new NameRepository();
+        /*NameRepository nameRepository = new NameRepository();
         for (Iterator iterator = nameRepository.getIterator(); iterator.hasNext();){
             String name = (String)iterator.next();
             System.out.println("Name: " + name);
-        }
+        }*/
+
+        /**
+         * 18. 中介者模式演示
+         * */
+        /*User robert = new User("Robert");
+        User john = new User("John");
+
+        robert.sendMessage("Hi, John!");
+        john.sendMessage("Hi, Robert!");*/
+
+        /*
+        * 19. 备忘录模式演示
+        * **/
+        Originator originator = new Originator();
+        CareTaker careTaker = new CareTaker();
+        originator.setState("State #1");
+        originator.setState("State #2");
+        careTaker.add(originator.saveStateToMemento());
+        originator.setState("State #3");
+        careTaker.add(originator.saveStateToMemento());
+        originator.setState("State #4");
+
+        System.out.println("Current state: " + originator.getState());
+        originator.getStateFromMemento(careTaker.get(0));
+        System.out.println("First saved state: " + originator.getState());
+        originator.getStateFromMemento(careTaker.get(1));
+        System.out.println("Second saved state: " + originator.getState());
     }
 
 }
