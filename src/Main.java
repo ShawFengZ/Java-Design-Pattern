@@ -13,6 +13,10 @@ import behaviorPattern.iteratorPattern.iterator.impl.NameRepository;
 import behaviorPattern.mediatorPattern.user.User;
 import behaviorPattern.mementoPattern.CareTaker;
 import behaviorPattern.mementoPattern.Originator;
+import behaviorPattern.observerPattern.BinaryObserver;
+import behaviorPattern.observerPattern.HexaObserver;
+import behaviorPattern.observerPattern.OctalObserver;
+import behaviorPattern.observerPattern.Subject;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import createPattern.AbstractFactoryPattern.abstractFactory.AbstractFactory;
 import createPattern.AbstractFactoryPattern.colorInterface.Color;
@@ -334,7 +338,7 @@ public class Main {
         /*
         * 19. 备忘录模式演示
         * **/
-        Originator originator = new Originator();
+        /*Originator originator = new Originator();
         CareTaker careTaker = new CareTaker();
         originator.setState("State #1");
         originator.setState("State #2");
@@ -347,7 +351,21 @@ public class Main {
         originator.getStateFromMemento(careTaker.get(0));
         System.out.println("First saved state: " + originator.getState());
         originator.getStateFromMemento(careTaker.get(1));
-        System.out.println("Second saved state: " + originator.getState());
+        System.out.println("Second saved state: " + originator.getState());*/
+
+        /**
+         * 20. 观察者模式演示
+         * */
+        Subject subject = new Subject();
+
+        new HexaObserver(subject);
+        new OctalObserver(subject);
+        new BinaryObserver(subject);
+
+        System.out.println("First state change: 15");
+        subject.setState(15);
+        System.out.println("Second state change: 10");
+        subject.setState(10);
     }
 
 }
