@@ -22,6 +22,9 @@ import behaviorPattern.observerPattern.BinaryObserver;
 import behaviorPattern.observerPattern.HexaObserver;
 import behaviorPattern.observerPattern.OctalObserver;
 import behaviorPattern.observerPattern.Subject;
+import behaviorPattern.strategyPattern.strategy.impl.OperationAdd;
+import behaviorPattern.strategyPattern.strategy.impl.OperationMultiply;
+import behaviorPattern.strategyPattern.strategy.impl.OperationSubstract;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import createPattern.AbstractFactoryPattern.abstractFactory.AbstractFactory;
 import createPattern.AbstractFactoryPattern.colorInterface.Color;
@@ -390,7 +393,7 @@ public class Main {
         /**
          * 22. 空对象模式演示
          * */
-        AbstractCustomer customer1 = CustomerFactory.getCustomer("Rob");
+        /*AbstractCustomer customer1 = CustomerFactory.getCustomer("Rob");
         AbstractCustomer customer2 = CustomerFactory.getCustomer("Bob");
         AbstractCustomer customer3 = CustomerFactory.getCustomer("Julie");
         AbstractCustomer customer4 = CustomerFactory.getCustomer("Laura");
@@ -399,7 +402,19 @@ public class Main {
         System.out.println(customer1.getName());
         System.out.println(customer2.getName());
         System.out.println(customer3.getName());
-        System.out.println(customer4.getName());
+        System.out.println(customer4.getName());*/
+
+        /**
+         *  23. 策略模式演示
+         * */
+        behaviorPattern.strategyPattern.context.Context context = new behaviorPattern.strategyPattern.context.Context(new OperationAdd());
+        System.out.println("10 + 5 = " + context.executeStrategy(10, 5));
+
+        context = new behaviorPattern.strategyPattern.context.Context(new OperationSubstract());
+        System.out.println("10 - 5 = " + context.executeStrategy(10, 5));
+
+        context = new behaviorPattern.strategyPattern.context.Context(new OperationMultiply());
+        System.out.println("10 * 5 = " + context.executeStrategy(10, 5));
     }
 
 }
