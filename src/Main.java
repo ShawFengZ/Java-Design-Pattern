@@ -16,6 +16,8 @@ import behaviorPattern.iteratorPattern.iterator.impl.NameRepository;
 import behaviorPattern.mediatorPattern.user.User;
 import behaviorPattern.mementoPattern.CareTaker;
 import behaviorPattern.mementoPattern.Originator;
+import behaviorPattern.nullObjectPattern.entity.AbstractCustomer;
+import behaviorPattern.nullObjectPattern.factory.CustomerFactory;
 import behaviorPattern.observerPattern.BinaryObserver;
 import behaviorPattern.observerPattern.HexaObserver;
 import behaviorPattern.observerPattern.OctalObserver;
@@ -373,7 +375,7 @@ public class Main {
         /**
          * 21. 状态模式演示
          * */
-        Context context = new Context();
+        /*Context context = new Context();
 
         StartState startState = new StartState();
         startState.doAction(context);
@@ -383,7 +385,21 @@ public class Main {
         StopState stopState = new StopState();
         stopState.doAction(context);
 
-        System.out.println(context.getState().toString());
+        System.out.println(context.getState().toString());*/
+
+        /**
+         * 22. 空对象模式演示
+         * */
+        AbstractCustomer customer1 = CustomerFactory.getCustomer("Rob");
+        AbstractCustomer customer2 = CustomerFactory.getCustomer("Bob");
+        AbstractCustomer customer3 = CustomerFactory.getCustomer("Julie");
+        AbstractCustomer customer4 = CustomerFactory.getCustomer("Laura");
+
+        System.out.println("Customers");
+        System.out.println(customer1.getName());
+        System.out.println(customer2.getName());
+        System.out.println(customer3.getName());
+        System.out.println(customer4.getName());
     }
 
 }
