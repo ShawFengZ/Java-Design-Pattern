@@ -1,3 +1,6 @@
+import behaviorPattern.StatePattern.context.Context;
+import behaviorPattern.StatePattern.state.impl.StartState;
+import behaviorPattern.StatePattern.state.impl.StopState;
 import behaviorPattern.chainOfResponsibilityPattern.AbstractLogger;
 import behaviorPattern.chainOfResponsibilityPattern.ErrorLogger;
 import behaviorPattern.commandPattern.call.Broker;
@@ -356,7 +359,7 @@ public class Main {
         /**
          * 20. 观察者模式演示
          * */
-        Subject subject = new Subject();
+        /*Subject subject = new Subject();
 
         new HexaObserver(subject);
         new OctalObserver(subject);
@@ -365,7 +368,22 @@ public class Main {
         System.out.println("First state change: 15");
         subject.setState(15);
         System.out.println("Second state change: 10");
-        subject.setState(10);
+        subject.setState(10);*/
+
+        /**
+         * 21. 状态模式演示
+         * */
+        Context context = new Context();
+
+        StartState startState = new StartState();
+        startState.doAction(context);
+
+        System.out.println(context.getState().toString());
+
+        StopState stopState = new StopState();
+        stopState.doAction(context);
+
+        System.out.println(context.getState().toString());
     }
 
 }
