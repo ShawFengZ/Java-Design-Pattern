@@ -42,6 +42,9 @@ import createPattern.builderPattern.meal.Meal;
 //import createPattern.prototypePattern.cloneClass.Shape;
 import createPattern.prototypePattern.dao.ShapeCache;
 import createPattern.singletonPattern.demo.SingleObject;
+import otherPattern.mvcPattern.controller.StudentController;
+import otherPattern.mvcPattern.model.Student;
+import otherPattern.mvcPattern.view.StudentView;
 import structurePattern.FacadePattern.facade.ShapeMaker;
 import structurePattern.adapterPattern.player.impl.AudioPlayer;
 import structurePattern.bridgePattern.bridge.impl.GreenCircle;
@@ -435,8 +438,30 @@ public class Main {
         /**
          * 25. 访问者模式
          * */
-        ComputerPart computer = new Computer();
-        computer.accept(new ComputerPartDisplayVisitor());
+        /*ComputerPart computer = new Computer();
+        computer.accept(new ComputerPartDisplayVisitor());*/
+
+        /**
+         * 26. MVC模式演示
+         * */
+        //从数据库获取学生记录
+        Student model = retriveStudentFromDatabase();
+        //创建一个视图，把学生信息输出到控制台
+        StudentView view = new StudentView();
+
+        StudentController controller = new StudentController(model, view);
+
+        controller.updateView();
+
+        //更新模型数据
+        controller.setStudentName("John");
+        controller.updateView();
+    }
+    private static Student retriveStudentFromDatabase(){
+        Student student = new Student();
+        student.setName("Robert");
+        student.setRollNo("10");
+        return student;
     }
 
 }
