@@ -28,6 +28,9 @@ import behaviorPattern.strategyPattern.strategy.impl.OperationSubstract;
 import behaviorPattern.templatePattern.game.Cricket;
 import behaviorPattern.templatePattern.template.Football;
 import behaviorPattern.templatePattern.template.Game;
+import behaviorPattern.visitorPattern.computer.ComputerPart;
+import behaviorPattern.visitorPattern.computer.impl.Computer;
+import behaviorPattern.visitorPattern.visitor.impl.ComputerPartDisplayVisitor;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import createPattern.AbstractFactoryPattern.abstractFactory.AbstractFactory;
 import createPattern.AbstractFactoryPattern.colorInterface.Color;
@@ -422,12 +425,18 @@ public class Main {
         /**
          * 24. 模板模式演示
          * */
-        Game game = new Cricket();
+        /*Game game = new Cricket();
         game.play();
 
         System.out.println();
         game = new Football();
-        game.play();
+        game.play();*/
+
+        /**
+         * 25. 访问者模式
+         * */
+        ComputerPart computer = new Computer();
+        computer.accept(new ComputerPartDisplayVisitor());
     }
 
 }
