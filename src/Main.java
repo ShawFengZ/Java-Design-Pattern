@@ -25,6 +25,9 @@ import behaviorPattern.observerPattern.Subject;
 import behaviorPattern.strategyPattern.strategy.impl.OperationAdd;
 import behaviorPattern.strategyPattern.strategy.impl.OperationMultiply;
 import behaviorPattern.strategyPattern.strategy.impl.OperationSubstract;
+import behaviorPattern.templatePattern.game.Cricket;
+import behaviorPattern.templatePattern.template.Football;
+import behaviorPattern.templatePattern.template.Game;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import createPattern.AbstractFactoryPattern.abstractFactory.AbstractFactory;
 import createPattern.AbstractFactoryPattern.colorInterface.Color;
@@ -407,14 +410,24 @@ public class Main {
         /**
          *  23. 策略模式演示
          * */
-        behaviorPattern.strategyPattern.context.Context context = new behaviorPattern.strategyPattern.context.Context(new OperationAdd());
+        /*behaviorPattern.strategyPattern.context.Context context = new behaviorPattern.strategyPattern.context.Context(new OperationAdd());
         System.out.println("10 + 5 = " + context.executeStrategy(10, 5));
 
         context = new behaviorPattern.strategyPattern.context.Context(new OperationSubstract());
         System.out.println("10 - 5 = " + context.executeStrategy(10, 5));
 
         context = new behaviorPattern.strategyPattern.context.Context(new OperationMultiply());
-        System.out.println("10 * 5 = " + context.executeStrategy(10, 5));
+        System.out.println("10 * 5 = " + context.executeStrategy(10, 5));*/
+
+        /**
+         * 24. 模板模式演示
+         * */
+        Game game = new Cricket();
+        game.play();
+
+        System.out.println();
+        game = new Football();
+        game.play();
     }
 
 }
