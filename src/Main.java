@@ -43,10 +43,13 @@ import createPattern.builderPattern.meal.Meal;
 import createPattern.prototypePattern.dao.ShapeCache;
 import createPattern.singletonPattern.demo.SingleObject;
 //import otherPattern.businessDelegatePattern.client.Client;
+import otherPattern.DataAccessObjectPattern.dao.StudentDao;
+import otherPattern.DataAccessObjectPattern.dao.impl.StudentDaoImpl;
+import otherPattern.DataAccessObjectPattern.entity.Student;
 import otherPattern.businessDelegatePattern.delegate.BusinessDelegate;
 import otherPattern.compositeEntity.client.Client;
 import otherPattern.mvcPattern.controller.StudentController;
-import otherPattern.mvcPattern.model.Student;
+//import otherPattern.mvcPattern.model.Student;
 import otherPattern.mvcPattern.view.StudentView;
 import structurePattern.FacadePattern.facade.ShapeMaker;
 import structurePattern.adapterPattern.player.impl.AudioPlayer;
@@ -475,18 +478,29 @@ public class Main {
         /**
          * 28. 组合实体模式演示
          * */
-        Client client = new Client();
+        /*Client client = new Client();
         client.setData("Test", "Data");
         client.printData();
         client.setData("Second Test", "Data1");
-        client.printData();
+        client.printData();*/
+
+        /**
+         * 29. Dao数据访问模式
+         * */
+        StudentDao studentDao = new StudentDaoImpl();
+
+        //输出所有学生
+        for (Student student: studentDao.getAllStudents()){
+            System.out.println("Student: [RollNo :"
+                 + student.getRollNo() + ", Name: " + student.getName() + " ]");
+        }
     }
     //MVC模式辅助函数
-    private static Student retriveStudentFromDatabase(){
+    /*private static Student retriveStudentFromDatabase(){
         Student student = new Student();
         student.setName("Robert");
         student.setRollNo("10");
         return student;
-    }
+    }*/
 
 }
