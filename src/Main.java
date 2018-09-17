@@ -42,6 +42,8 @@ import createPattern.builderPattern.meal.Meal;
 //import createPattern.prototypePattern.cloneClass.Shape;
 import createPattern.prototypePattern.dao.ShapeCache;
 import createPattern.singletonPattern.demo.SingleObject;
+import otherPattern.businessDelegatePattern.client.Client;
+import otherPattern.businessDelegatePattern.delegate.BusinessDelegate;
 import otherPattern.mvcPattern.controller.StudentController;
 import otherPattern.mvcPattern.model.Student;
 import otherPattern.mvcPattern.view.StudentView;
@@ -444,7 +446,7 @@ public class Main {
         /**
          * 26. MVC模式演示
          * */
-        //从数据库获取学生记录
+        /*//从数据库获取学生记录
         Student model = retriveStudentFromDatabase();
         //创建一个视图，把学生信息输出到控制台
         StudentView view = new StudentView();
@@ -455,8 +457,21 @@ public class Main {
 
         //更新模型数据
         controller.setStudentName("John");
-        controller.updateView();
+        controller.updateView();*/
+
+        /**
+         * 27. 使用BusinessDelegate和Client类来演示业务代表模式
+         * */
+        BusinessDelegate businessDelegate = new BusinessDelegate();
+        businessDelegate.setServiceType("EJB");
+
+        Client client = new Client(businessDelegate);
+        client.doTask();
+
+        businessDelegate.setServiceType("JMS");
+        client.doTask();
     }
+    //MVC模式辅助函数
     private static Student retriveStudentFromDatabase(){
         Student student = new Student();
         student.setName("Robert");
