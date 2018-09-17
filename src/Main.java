@@ -42,8 +42,9 @@ import createPattern.builderPattern.meal.Meal;
 //import createPattern.prototypePattern.cloneClass.Shape;
 import createPattern.prototypePattern.dao.ShapeCache;
 import createPattern.singletonPattern.demo.SingleObject;
-import otherPattern.businessDelegatePattern.client.Client;
+//import otherPattern.businessDelegatePattern.client.Client;
 import otherPattern.businessDelegatePattern.delegate.BusinessDelegate;
+import otherPattern.compositeEntity.client.Client;
 import otherPattern.mvcPattern.controller.StudentController;
 import otherPattern.mvcPattern.model.Student;
 import otherPattern.mvcPattern.view.StudentView;
@@ -462,14 +463,23 @@ public class Main {
         /**
          * 27. 使用BusinessDelegate和Client类来演示业务代表模式
          * */
-        BusinessDelegate businessDelegate = new BusinessDelegate();
+        /*BusinessDelegate businessDelegate = new BusinessDelegate();
         businessDelegate.setServiceType("EJB");
 
         Client client = new Client(businessDelegate);
         client.doTask();
 
         businessDelegate.setServiceType("JMS");
-        client.doTask();
+        client.doTask();*/
+
+        /**
+         * 28. 组合实体模式演示
+         * */
+        Client client = new Client();
+        client.setData("Test", "Data");
+        client.printData();
+        client.setData("Second Test", "Data1");
+        client.printData();
     }
     //MVC模式辅助函数
     private static Student retriveStudentFromDatabase(){
