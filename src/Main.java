@@ -57,6 +57,8 @@ import otherPattern.interceptingFilterPattern.target.Target;
 import otherPattern.mvcPattern.controller.StudentController;
 //import otherPattern.mvcPattern.model.Student;
 import otherPattern.mvcPattern.view.StudentView;
+import otherPattern.serviceLocatorPattern.ServiceLocator;
+import otherPattern.serviceLocatorPattern.service.Service;
 import structurePattern.FacadePattern.facade.ShapeMaker;
 import structurePattern.adapterPattern.player.impl.AudioPlayer;
 import structurePattern.bridgePattern.bridge.impl.GreenCircle;
@@ -512,13 +514,25 @@ public class Main {
         /**
          * 31. 步骤7，使用Client来演示过滤器设计模式
          * */
-        FilterManager filterManager = new FilterManager(new Target());
+        /*FilterManager filterManager = new FilterManager(new Target());
         filterManager.setFilter(new AuthenticationFilter());
         filterManager.setFilter(new DebugFilter());
 
         Client client = new Client();
         client.setFilterManager(filterManager);
-        client.sendRequest("Home");
+        client.sendRequest("Home");*/
+
+        /**
+         * 32. 使用ServiceLocator来演示服务定位器设计模式
+         * */
+        Service service = ServiceLocator.getServic("Service1");
+        service.execute();
+        service = ServiceLocator.getServic("Service2");
+        service.execute();
+        service = ServiceLocator.getServic("Service1");
+        service.execute();
+        service = ServiceLocator.getServic("Service2");
+        service.execute();
     }
     //MVC模式辅助函数
     /*private static Student retriveStudentFromDatabase(){
