@@ -48,6 +48,7 @@ import otherPattern.DataAccessObjectPattern.dao.impl.StudentDaoImpl;
 import otherPattern.DataAccessObjectPattern.entity.Student;
 import otherPattern.businessDelegatePattern.delegate.BusinessDelegate;
 import otherPattern.compositeEntity.client.Client;
+import otherPattern.frontControllerPattern.FrontController;
 import otherPattern.mvcPattern.controller.StudentController;
 //import otherPattern.mvcPattern.model.Student;
 import otherPattern.mvcPattern.view.StudentView;
@@ -487,13 +488,20 @@ public class Main {
         /**
          * 29. Dao数据访问模式
          * */
-        StudentDao studentDao = new StudentDaoImpl();
+        /*StudentDao studentDao = new StudentDaoImpl();
 
         //输出所有学生
         for (Student student: studentDao.getAllStudents()){
             System.out.println("Student: [RollNo :"
                  + student.getRollNo() + ", Name: " + student.getName() + " ]");
-        }
+        }*/
+
+        /**
+         * 30. 前端控制器模式demo
+         * */
+        FrontController frontController = new FrontController();
+        frontController.dispatchRequest("Home");
+        frontController.dispatchRequest("Student");
     }
     //MVC模式辅助函数
     /*private static Student retriveStudentFromDatabase(){
