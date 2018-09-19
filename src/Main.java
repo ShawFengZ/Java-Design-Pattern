@@ -59,6 +59,8 @@ import otherPattern.mvcPattern.controller.StudentController;
 import otherPattern.mvcPattern.view.StudentView;
 import otherPattern.serviceLocatorPattern.ServiceLocator;
 import otherPattern.serviceLocatorPattern.service.Service;
+import otherPattern.transferObjectPattern.StudentBO;
+import otherPattern.transferObjectPattern.StudentVO;
 import structurePattern.FacadePattern.facade.ShapeMaker;
 import structurePattern.adapterPattern.player.impl.AudioPlayer;
 import structurePattern.bridgePattern.bridge.impl.GreenCircle;
@@ -525,14 +527,35 @@ public class Main {
         /**
          * 32. 使用ServiceLocator来演示服务定位器设计模式
          * */
-        Service service = ServiceLocator.getServic("Service1");
+        /*Service service = ServiceLocator.getServic("Service1");
         service.execute();
         service = ServiceLocator.getServic("Service2");
         service.execute();
         service = ServiceLocator.getServic("Service1");
         service.execute();
         service = ServiceLocator.getServic("Service2");
-        service.execute();
+        service.execute();*/
+
+        /**
+         * 33. 步骤3，使用StudentBO来演示传输对象设计模式
+         * */
+        StudentBO studentBusinessObject = new StudentBO();
+
+        //输出所有学生
+        for (StudentVO student: studentBusinessObject.getAllStudents()) {
+            System.out.println("Student: [RollNo:" + student.getRollNo()
+                    + ", Name : " + student.getName() + "]");
+        }
+
+        //更新学生
+        StudentVO student = studentBusinessObject.getAllStudents().get(0);
+        student.setName("Michael");
+        studentBusinessObject.updateStudent(student);
+
+        //获取学生
+        studentBusinessObject.getStudent(0);
+        System.out.println("Student: [RollNo: " + student.getRollNo()
+                + ", Name : "+ student.getName()+"]");
     }
     //MVC模式辅助函数
     /*private static Student retriveStudentFromDatabase(){
