@@ -47,8 +47,13 @@ import otherPattern.DataAccessObjectPattern.dao.StudentDao;
 import otherPattern.DataAccessObjectPattern.dao.impl.StudentDaoImpl;
 import otherPattern.DataAccessObjectPattern.entity.Student;
 import otherPattern.businessDelegatePattern.delegate.BusinessDelegate;
-import otherPattern.compositeEntity.client.Client;
+//import otherPattern.compositeEntity.client.Client;
 import otherPattern.frontControllerPattern.FrontController;
+import otherPattern.interceptingFilterPattern.client.Client;
+import otherPattern.interceptingFilterPattern.filter.FilterManager;
+import otherPattern.interceptingFilterPattern.filter.impl.AuthenticationFilter;
+import otherPattern.interceptingFilterPattern.filter.impl.DebugFilter;
+import otherPattern.interceptingFilterPattern.target.Target;
 import otherPattern.mvcPattern.controller.StudentController;
 //import otherPattern.mvcPattern.model.Student;
 import otherPattern.mvcPattern.view.StudentView;
@@ -66,6 +71,7 @@ import structurePattern.flyweightPattern.entity.impl.Circle;
 import structurePattern.flyweightPattern.factory.ShapeFactory;
 import structurePattern.proxyPattern.entity.Image;
 import structurePattern.proxyPattern.entity.impl.ProxyImage;
+import sun.util.cldr.CLDRLocaleDataMetaInfo;
 
 public class Main {
 
@@ -499,9 +505,20 @@ public class Main {
         /**
          * 30. 前端控制器模式demo
          * */
-        FrontController frontController = new FrontController();
+        /*FrontController frontController = new FrontController();
         frontController.dispatchRequest("Home");
-        frontController.dispatchRequest("Student");
+        frontController.dispatchRequest("Student");*/
+
+        /**
+         * 31. 步骤7，使用Client来演示过滤器设计模式
+         * */
+        FilterManager filterManager = new FilterManager(new Target());
+        filterManager.setFilter(new AuthenticationFilter());
+        filterManager.setFilter(new DebugFilter());
+
+        Client client = new Client();
+        client.setFilterManager(filterManager);
+        client.sendRequest("Home");
     }
     //MVC模式辅助函数
     /*private static Student retriveStudentFromDatabase(){
